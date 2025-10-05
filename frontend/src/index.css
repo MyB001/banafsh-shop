@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "IRANSansWeb";
+  src: local("IRANSansWeb"), url("../public/Fonts/IRANSansWeb(FaNum).ttf");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  border-radius: 5px;
+}
+
+/* Handle on hover  */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  margin: 0;
+  font-family: "IRANSansWeb";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.swiper-pagination-bullet {
+  @apply w-2 h-2 rounded-md bg-gray-500 opacity-100 transition-all duration-300 !important;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-[#FF00FF] scale-x-150 !important;
+}
+
+.swiper-button-prev {
+  @apply text-white bg-[#FF00FF] border-[1px] border-[#FF00FF] h-8 rounded-md active:bg-white active:text-[#FF00FF] opacity-100 m-0 top-2 right-2 !important;
+}
+
+.swiper-button-prev::after {
+  @apply text-xl !important;
+}
+
+.swiper-button-next {
+  @apply text-white bg-[#FF00FF] border-[1px] border-[#FF00FF] h-8 rounded-md active:bg-white active:text-[#FF00FF] opacity-100 m-0 top-2 right-10 !important;
+}
+
+.swiper-button-next::after {
+  @apply text-xl !important;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}

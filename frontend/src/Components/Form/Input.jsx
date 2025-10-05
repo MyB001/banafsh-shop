@@ -1,0 +1,69 @@
+import React, { useEffect, useReducer } from "react";
+import Validator from "../../Validators/Validator";
+
+const inputReducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE": {
+      return {
+        ...state,
+        value: action.value,
+        isValid: Validator(action.value,  action.validation),
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+export default function Input(props) {
+  const [mainInput, dispatch] = useReducer(inputReducer, {
+    value: "",
+    isValid: false,
+  });
+
+  const { value, isValid } = mainInput;
+  const { id, onInputHandler } = props;
+
+  useEffect(() => {
+    onInputHandler(id, value, isValid);
+  }, [value]);
+
+  const onChangeHandler = (event) => {
+    dispatch({
+      type: "CHANGE",
+      value: event.target.value,
+      validation: props.validation,
+    });
+  };
+  const element =
+    props.element === "input" ? (
+      <input
+        type={props.type}
+        placeholder={props.placeholder}
+        className={`${props.className} ${
+          mainInput.isValid
+            ? "border-green-400 text-green-400"
+            : "text-red-600 focus:border-red-600"
+        }`}
+        value={mainInput.value}
+        onChange={onChangeHandler}
+      />
+    ) : (
+      <textarea
+        type={props.type}
+        placeholder={props.placeholder}
+        className={`${props.className} ${
+          mainInput.isValid
+            ? "border-green-400 text-green-400"
+            : "text-red-600 focus:border-red-600"
+        }`}
+        value={mainInput.value}
+        onChange={onChangeHandler}
+        name=""
+        id=""
+      />
+    );
+
+  return <div>{element}</div>;
+}
